@@ -1,4 +1,5 @@
-﻿using PaymentContext.Shared.ValueObjects;
+﻿using Flunt.Validations;
+using PaymentContext.Shared.ValueObjects;
 
 namespace PaymentContext.Domain.ValueObjects;
 
@@ -9,30 +10,15 @@ public sealed class Name : ValueObject
         FirstName = firstName;
         LastName = lastName;
 
-        ValidateFirstName();
-        ValidateLastName();
+        AddNotifications(new Contract<Name>()
+            .Requires()
+            .IsLowerThan(FirstName, 45, "Name.FirstName", "O primeiro nome não deve conter mais de 45 caracteres")
+            .IsGreaterThan(FirstName, 3, "Name.FirstName", "O primeiro nome deve conter pelo menos 3 caracteres")
+            .IsLowerThan(LastName, 45, "Name.LastName", "O último nome não deve conter mais de 45 caracteres")
+            .IsGreaterThan(LastName, 3, "Name.LastName", "O último nome deve conter pelo menos 3 caracteres")
+        );
     }
 
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
-
-    private void ValidateFirstName()
-    {
-        if (string.IsNullOrEmpty(FirstName) ||
-            string.IsNullOrWhiteSpace(FirstName))
-            AddNotification("Name.FirstName", "Nome inválido");
-
-        if (FirstName.Length < 3 || FirstName.Length > 45)
-            AddNotification("Name.FirstName", "O primeiro nome não pode ter menos de 3 caracteres ou mais de 45 caracteres");
-    }
-
-    private void ValidateLastName()
-    {
-        if (string.IsNullOrEmpty(LastName) ||
-            string.IsNullOrWhiteSpace(LastName))
-            AddNotification("Name.LastName", "Nome inválido");
-
-        if (LastName.Length < 3 || LastName.Length > 60)
-            AddNotification("Name.LastName", "O último nome não pode ter menos de 3 caracteres ou mais de 60 caracteres");
-    }
 }
