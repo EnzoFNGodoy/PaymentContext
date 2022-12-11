@@ -1,15 +1,13 @@
+﻿using Flunt.Notifications;
+
 namespace PaymentContext.Shared.Entities;
 
-public class Entity
+public abstract class Entity : Notifiable<Notification>
 {
-    public Entity(Guid id, DateTime? updatedAt)
+    public Entity()
     {
-        Id = id;
-        CreatedAt = DateTime.Now;
-        UpdatedAt = updatedAt ?? CreatedAt;
+        Id = Guid.NewGuid();
     }
 
     public Guid Id { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
 }
