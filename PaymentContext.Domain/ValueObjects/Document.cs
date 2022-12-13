@@ -30,4 +30,6 @@ public sealed class Document : ValueObject
 
         return false;
     }
+
+    public override string ToString() => $"{Number}";
 }

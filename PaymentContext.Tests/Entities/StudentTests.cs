@@ -4,7 +4,7 @@ using PaymentContext.Domain.ValueObjects;
 
 namespace PaymentContext.Tests.Entities;
 
-public class StudentTests
+public sealed class StudentTests
 {
     private readonly Student _student;
     private readonly Subscription _subscription;
@@ -25,7 +25,7 @@ public class StudentTests
         _student = new Student(_name, _document, _email, _address);
 
         _subscription = new Subscription(null);
-        _payment = new PayPalPayment("12345", DateTime.Now, DateTime.Now.AddDays(10), 10, 10,
+        _payment = new PayPalPayment("12345", DateTime.Now.AddHours(1), DateTime.Now.AddDays(10), 10, 10,
            "CR7", _document, _address, _email);
     }
 

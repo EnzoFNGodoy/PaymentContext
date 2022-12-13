@@ -3,7 +3,7 @@ using PaymentContext.Domain.ValueObjects;
 
 namespace PaymentContext.Tests.ValueObjects;
 
-public class DocumentTests
+public sealed class DocumentTests
 {
     #region CNPJ
     [Theory]

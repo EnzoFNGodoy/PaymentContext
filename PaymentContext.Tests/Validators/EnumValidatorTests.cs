@@ -3,7 +3,7 @@ using PaymentContext.Shared.Helpers;
 
 namespace PaymentContext.Tests.Validators;
 
-public class EnumValidatorTests
+public sealed class EnumValidatorTests
 {
     [Theory]
     [InlineData(1)]
