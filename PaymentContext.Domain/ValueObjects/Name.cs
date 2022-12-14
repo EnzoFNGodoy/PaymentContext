@@ -5,6 +5,13 @@ namespace PaymentContext.Domain.ValueObjects;
 
 public sealed class Name : ValueObject
 {
+    private string v;
+
+    public Name(string v)
+    {
+        this.v = v;
+    }
+
     public Name(string firstName, string lastName)
     {
         FirstName = firstName;
